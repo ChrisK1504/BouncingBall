@@ -9,6 +9,10 @@ class Ball {
     noStroke();
     circle(this.position.x, this.position.y, this.diameter);
   }
+  update() {
+    this.position.add(this.velocity);
+    this.velocity.y += 2;
+  }
 }
 
 
