@@ -5,8 +5,7 @@ class Ball {
     this.diameter = diameter;
   }
   show() {
-    fill("red");
-    noStroke();
+    fill("black");
     circle(this.position.x, this.position.y, this.diameter);
   }
   update() {
@@ -39,7 +38,6 @@ class Ball {
 }
 
 let ball;
-
 function setup() {
   frameRate(240);
   ball = new Ball(100,100,10);
@@ -49,7 +47,8 @@ function setup() {
 function draw() {
   background(0);
   noFill();
-  stroke(255,255,255);
+  stroke(random(255), random(255), random(255));
+  strokeWeight(3);
   circle(200,200,400);
   ball.show();
   ball.update();
