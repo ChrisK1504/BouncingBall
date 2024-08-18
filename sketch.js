@@ -19,18 +19,22 @@ class Ball {
     let distanceFromCenter = createVector(200-this.position.x, 200-this.position.y);
     // Checks if any part of the ball is outside the circle
     if (distanceFromCenter.mag() + this.diameter/2 >= 200) {
-      // TODO: CALCULATE THE NORMAL AT THE POINT OF CONTACT
-      let normal = distanceFromCenter.normalize();
-      // w = v - 2 * (v . n) * n
-      // w -> exiting vector
-      // v -> entering vector
-      // n -> normal to the surface
-      // the normal is not taken from the surface in this case
-      // but from the center of the ball, which is diameter/2 away from the surface
-      // The bigger the ball gets, the more error this approximation will have
-      let reflectionVelocity = this.velocity.sub(normal.mult(2*p5.Vector.dot(normal,this.velocity)));
-      this.velocity = reflectionVelocity;
+      this.bounce(distanceFromCenter);
     }
+  }
+
+  bounce(distance) {
+    // TODO: CALCULATE THE NORMAL AT THE POINT OF CONTACT
+    let normal = distance.normalize();
+    // w = v - 2 * (v . n) * n
+    // w -> exiting vector
+    // v -> entering vector
+    // n -> normal to the surface
+    // the normal is not taken from the surface in this case
+    // but from the center of the ball, which is diameter/2 away from the surface
+    // The bigger the ball gets, the more error this approximation will have
+    let reflectionVelocity = this.velocity.sub(normal.mult(2*p5.Vector.dot(normal,this.velocity)));
+    this.velocity = reflectionVelocity;
   }
 }
 
